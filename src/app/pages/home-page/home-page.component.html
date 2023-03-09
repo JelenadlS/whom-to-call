@@ -1,0 +1,31 @@
+<form [formGroup]="addPersonForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="name">
+          I want to call 
+        </label>
+        <input 
+        id="name" 
+        type="text" 
+        formControlName="name"
+        placeholder="name"
+        required
+        >
+      </div>
+    
+      <div>
+        <label for="frequency">
+            every 
+        </label>
+        <input 
+        id="frequency" 
+        type="text" 
+        formControlName="frequency"
+        required
+        ><label for="frequency">
+            day.
+        </label>
+      </div>
+
+    <button class="button" type="submit" [disabled]="name?.status === 'INVALID' || frequency?.status === 'INVALID'">Add</button>
+  
+  </form>
