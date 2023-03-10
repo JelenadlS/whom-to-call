@@ -2,8 +2,12 @@
   <div class="page--header__positioning">
     <h1>Whom to call</h1>
   </div>
-  <app-home-page></app-home-page>
+  <router-outlet></router-outlet>
   <div class="page--navigation__positioning">
-    <span>navigation</span>
+    <nav>
+      <ul>
+        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+      </ul>
+    </nav>
   </div>
 </div>
