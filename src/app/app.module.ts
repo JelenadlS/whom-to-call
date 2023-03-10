@@ -9,11 +9,13 @@ import { addDataReducer } from './store/reducers/input-data.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
+import { AddDataPageComponent } from './pages/add-data-page/add-data-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    AddDataPageComponent
   ],
   imports: [
     BrowserModule,
