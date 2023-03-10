@@ -22,7 +22,7 @@
         formControlName="frequency"
         required
         ><label for="frequency">
-            day.
+            days.
         </label>
       </div>
       
@@ -33,3 +33,9 @@
       only numbers starting from 1 are allowed.
   </div>
   </form>
+  <div *ngFor="let data of (data$ |async)">
+    <ul>
+      <li>{{ data.name }} every {{ data.frequency }} days. <br>
+        last time: {{ data.timeStamp }}</li>
+    </ul>
+  </div>
