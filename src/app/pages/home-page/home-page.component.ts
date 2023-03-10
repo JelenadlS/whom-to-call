@@ -14,18 +14,6 @@ import * as uuid from 'uuid'
   styleUrls: ['./home-page.component.less']
 })
 export class HomePageComponent implements OnInit {
-  public addPersonForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.required, 
-      Validators.minLength(4)
-    ]),
-    frequency: new FormControl('', [
-      Validators.required, 
-      onlyNumbersValidator(/(([1-9]{1})|([1-9]{1}[0-9]{1,}))/)
-    ]),
-    timeStamp: new FormControl(0),
-    id: new FormControl(0),
-  });
   public data$: Observable<data[]> = this.store.select(dataSelector)
 
   constructor(
@@ -33,16 +21,6 @@ export class HomePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
-
-  get name() { return this.addPersonForm.get('name')}
-  get frequency() { return this.addPersonForm.get('frequency')}
-
-  public onSubmit(): void {
-    this.addPersonForm.value.timeStamp = new Date().toDateString()
-    this.addPersonForm.value.id = uuid.v4()
-    this.store.dispatch(addDataAction(this.addPersonForm.value))
-    this.addPersonForm.reset();
   }
 
 }

@@ -10,12 +10,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AddDataPageComponent } from './pages/add-data-page/add-data-page.component';
+import { NameCardComponent } from './components/name-card/name-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    AddDataPageComponent
+    AddDataPageComponent,
+    NameCardComponent
   ],
   imports: [
     BrowserModule,
