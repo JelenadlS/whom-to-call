@@ -15,14 +15,12 @@ import * as uuid from 'uuid'
 })
 export class HomePageComponent implements OnInit {
   public data$: Observable<data[]> = this.store.select(dataSelector)
-  // public datas: any = JSON.parse(window.localStorage.getItem('data'))
 
   constructor(
     private store: Store
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.datas) 
   }
 
 }

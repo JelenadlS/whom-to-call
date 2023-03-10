@@ -1,5 +1,9 @@
 <section class="card--general">
-    <h3>{{ data.name }}</h3>
+    <div class="card--header">
+        <img src="assets/delete.svg" alt="delete" height="20px" (click)="delete(data.id)">
+        <h3>{{ data.name }}</h3>
+        <span>update</span>
+    </div>
     <div>how often: every {{ data.frequency }} days</div>
     <div>last time called: {{ data.timeStamp }}</div>
 </section>
