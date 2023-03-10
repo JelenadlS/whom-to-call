@@ -25,7 +25,11 @@
             day.
         </label>
       </div>
-
-    <button class="button" type="submit" [disabled]="name?.status === 'INVALID' || frequency?.status === 'INVALID'">Add</button>
-  
+      
+    <button class="form--button" type="submit" [disabled]="name?.status === 'INVALID' || frequency?.status === 'INVALID'">Add</button>
+    <div *ngIf="(name?.status === 'INVALID' || frequency?.status === 'INVALID') && (frequency?.touched && name?.touched)"
+    class="form--error-message">
+      Please enter a name with at least four letters and <br>
+      only numbers starting from 1 are allowed.
+  </div>
   </form>

@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
     ]),
     timeStamp: new FormControl(0)
   });
-
+console = console
   constructor() { }
 
   ngOnInit(): void {
