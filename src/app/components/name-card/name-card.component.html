@@ -2,8 +2,12 @@
     <div class="card--header">
         <img src="assets/delete.svg" alt="delete" height="20px" (click)="delete(data.id)">
         <h3>{{ data.name }}</h3>
-        <span>update</span>
+        <img src="assets/edit.svg" alt="edit" height="20px" (click)="edit(true)">
     </div>
     <div>how often: every {{ data.frequency }} days</div>
     <div>last time called: {{ data.timeStamp }}</div>
 </section>
+<app-edit-modal 
+    *ngIf="activeEdit" 
+    (newEditState)="edit($event)"
+></app-edit-modal>

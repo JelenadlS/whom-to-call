@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AddDataPageComponent } from './pages/add-data-page/add-data-page.component';
 import { NameCardComponent } from './components/name-card/name-card.component';
 import { hydrationMetaReducer } from './services/local-storage.service';
+import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 
 export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
 
@@ -21,7 +22,8 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
     AppComponent,
     HomePageComponent,
     AddDataPageComponent,
-    NameCardComponent
+    NameCardComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
