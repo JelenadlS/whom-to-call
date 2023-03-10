@@ -3,7 +3,6 @@ import { data } from "src/app/services/data.interface";
 
 
 export const dataSelector = createSelector(
-    createFeatureSelector('data'),
+    createFeatureSelector('storeData'),
     (data: data[]) => data
-
 );
