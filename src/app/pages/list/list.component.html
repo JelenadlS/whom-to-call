@@ -1,0 +1,5 @@
+<div *ngFor="let data of (data$ |async)">
+    <ul>
+      <app-name-card [data]="data"></app-name-card>
+    </ul>
+</div>

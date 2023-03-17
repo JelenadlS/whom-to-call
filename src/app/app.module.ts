@@ -14,6 +14,7 @@ import { NameCardComponent } from './components/name-card/name-card.component';
 import { hydrationMetaReducer } from './services/local-storage.service';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { FormComponent } from './components/form/form.component';
+import { ListComponent } from './pages/list/list.component';
 
 export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
 
@@ -25,7 +26,8 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
     AddDataPageComponent,
     NameCardComponent,
     EditModalComponent,
-    FormComponent
+    FormComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
