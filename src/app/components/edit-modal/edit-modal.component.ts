@@ -7,6 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class EditModalComponent implements OnInit {
   @Output() newEditState = new EventEmitter<boolean>();
+  @Input() data: any
+  public addOrEdit = 'edit'
 
   constructor() { }
 
@@ -16,4 +18,5 @@ export class EditModalComponent implements OnInit {
   public close(){
     this.newEditState.emit(false)
   }
+
 }

@@ -10,4 +10,5 @@
 <app-edit-modal 
     *ngIf="activeEdit" 
     (newEditState)="edit($event)"
+    [data]="data"
 ></app-edit-modal>

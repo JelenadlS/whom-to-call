@@ -2,6 +2,9 @@
 <div class="modal--background">
     <section class="modal">
         <img src="assets/close.svg" alt="close" height="20px" (click)="close()">
-    
+        <app-form 
+        [addOrEdit]="addOrEdit"
+        [data]="data"
+        ></app-form>
     </section>
 </div>
