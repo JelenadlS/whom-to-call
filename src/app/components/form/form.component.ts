@@ -20,6 +20,7 @@ export class FormComponent implements OnInit {
     frequency: '',
     timeStamp: ''
   };
+  console = console
 
   public addPersonForm = new FormGroup({
     name: new FormControl(this.data.name, [
@@ -30,7 +31,10 @@ export class FormComponent implements OnInit {
       Validators.required, 
       onlyNumbersValidator(/(([1-9]{1})|([1-9]{1}[0-9]{1,}))/)
     ]),
-    timeStamp: new FormControl(this.data.timeStamp),
+    timeStamp: new FormControl(this.data.timeStamp, [
+      Validators.required, 
+      onlyNumbersValidator(/^\d{2}[.]\d{2}[.]\d{4}$/)
+    ]),
     id: new FormControl(this.data.id),
   });
 
