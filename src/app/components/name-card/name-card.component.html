@@ -1,8 +1,8 @@
 <section class="card--general">
     <div class="card--header">
-        <img src="assets/delete.svg" alt="delete" height="20px" (click)="delete(data.id)">
+        <img src="assets/delete.svg" alt="delete" height="20px" (click)="delete(data.id)" *ngIf="editPossibility">
         <h3>{{ data.name }}</h3>
-        <img src="assets/edit.svg" alt="edit" height="20px" (click)="edit(true)">
+        <img src="assets/edit.svg" alt="edit" height="20px" (click)="edit(true)" *ngIf="editPossibility">
     </div>
     <div>how often: every {{ data.frequency }} days</div>
     <div>last time called: {{ data.timeStamp }}</div>

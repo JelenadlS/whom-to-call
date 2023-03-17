@@ -10,6 +10,7 @@ import { deleteDataAction } from 'src/app/store/actions/delete.action';
 })
 export class NameCardComponent implements OnInit {
   @Input() data: any;
+  @Input() editPossibility: boolean = true
   public activeEdit:boolean = false;
 
   constructor(
