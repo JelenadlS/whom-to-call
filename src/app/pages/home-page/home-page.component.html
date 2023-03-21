@@ -1,8 +1,10 @@
-<div>
+<div class="content__general--positioning">
+  <button type="button" class="content__button" (click)="getRandomPerson(todayOrLater)">get me someone else</button>
   <ul>
     <app-name-card 
     [data]="randomPerson"
     [editPossibility]="editPossibility"
     ></app-name-card>
   </ul>
+  
 </div>

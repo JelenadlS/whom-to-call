@@ -14,6 +14,7 @@ export class HomePageComponent implements OnInit {
   public data$: Observable<data[]> = this.store.select(dataSelector);
   public randomPerson: any;
   public editPossibility: boolean = false;
+  public todayOrLater:data[] = [];
 
   constructor(
     private store: Store
@@ -22,16 +23,17 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
 
     this.data$.subscribe((data: data[]) =>{
-      let todayOrLater:data[] = [];
+      
       data.filter((data:data) => {
+        const tomorrow = new Date(this.getDate(new Date()))
+        const nextCallDate = new Date(this.addDays(new Date(this.convertDate(data.timeStamp)), data.frequency))
 
-        if(new Date(this.convertDate(data.timeStamp)) >= new Date(this.getDate(new Date()))){
-          todayOrLater.push(data);
+        if(nextCallDate > tomorrow ){
+          this.todayOrLater.push(data);
         }
       })
 
-      const randomIndex = Math.floor(Math.random() * todayOrLater.length);
-      this.randomPerson= data[randomIndex];
+      this.getRandomPerson(this.todayOrLater)
     })
   }
 
@@ -39,7 +41,7 @@ export class HomePageComponent implements OnInit {
     const today = date;
     const yyyy = today.getFullYear();
     let mm = today.getMonth() + 1;
-    let dd = today.getDate();
+    let dd = today.getDate() + 1;
     let newmm = ''
     let newdd = ''
     
@@ -62,7 +64,7 @@ export class HomePageComponent implements OnInit {
   public convertDate(date: string): string{
     const splitDate = date.split('.');
 
-     const yyyy = splitDate[2];
+    const yyyy = splitDate[2];
     let mm = Number(splitDate[1]);
     let dd = Number(splitDate[0]);
     let newmm = ''
@@ -78,10 +80,21 @@ export class HomePageComponent implements OnInit {
     } else {
       newmm = mm.toString()
     }
-    
+
     const formattedToday = yyyy + '-' + newmm + '-' + newdd;
 
     return formattedToday
+  }
+
+  public addDays(date: Date, days: string) {
+    date.setDate(date.getDate() + Number(days))
+    return date
+  }
+
+  public getRandomPerson(todayOrLater:data[]) {
+    const randomIndex = Math.floor(Math.random() * todayOrLater.length);
+    
+    this.randomPerson= todayOrLater[randomIndex];
   }
 
 }
