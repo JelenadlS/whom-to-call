@@ -1,0 +1,10 @@
+<div class="modal--background">
+    <section class="modal">
+        <img src="assets/close.svg" alt="close" height="20px" (click)="close(false)">
+        <app-form 
+        [addOrEdit]="addOrEdit"
+        [data]="data"
+        (newCalledState)="close($event)"
+        ></app-form>
+    </section>
+</div>

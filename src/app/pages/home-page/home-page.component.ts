@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { data } from 'src/app/services/data.interface';
 import { dataSelector } from 'src/app/store/selectors/input-data.selector';
 
+ // TODO Random nur einmal vorkommen lassen
+ // TODO Liste nach next Call ordnen
 
 @Component({
   selector: 'app-home-page',
@@ -14,7 +16,9 @@ export class HomePageComponent implements OnInit {
   public data$: Observable<data[]> = this.store.select(dataSelector);
   public randomPerson: any;
   public editPossibility: boolean = false;
+  public showCalledChecBox: boolean = true;
   public todayOrLater:data[] = [];
+  public addOrEdit = 'called'
 
   constructor(
     private store: Store
@@ -25,10 +29,9 @@ export class HomePageComponent implements OnInit {
     this.data$.subscribe((data: data[]) =>{
       
       data.filter((data:data) => {
-        const tomorrow = new Date(this.getDate(new Date()))
-        const nextCallDate = new Date(this.addDays(new Date(this.convertDate(data.timeStamp)), data.frequency))
-
-        if(nextCallDate > tomorrow ){
+        const tomorrow = new Date(this.getDate(new Date()));
+        const nextCallDate = new Date(this.addDays(new Date(this.convertDate(data.timeStamp)), data.frequency));
+        if(nextCallDate < tomorrow ){
           this.todayOrLater.push(data);
         }
       })
@@ -96,5 +99,4 @@ export class HomePageComponent implements OnInit {
     
     this.randomPerson= todayOrLater[randomIndex];
   }
-
 }

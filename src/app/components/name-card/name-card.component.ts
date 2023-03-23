@@ -10,8 +10,10 @@ import { deleteDataAction } from 'src/app/store/actions/delete.action';
 })
 export class NameCardComponent implements OnInit {
   @Input() data: any;
-  @Input() editPossibility: boolean = true
+  @Input() editPossibility: boolean = true;
+  @Input() showCalledChecBox:boolean = false;
   public activeEdit:boolean = false;
+  public activeCalled:boolean = false;
 
   constructor(
     private store: Store
@@ -25,7 +27,10 @@ export class NameCardComponent implements OnInit {
   }
 
   public edit(state: boolean) {
-    // TODO add edit function within modal
     this.activeEdit = state
+  }
+
+  public called(state: boolean) {
+    this.activeCalled = state
   }
 }

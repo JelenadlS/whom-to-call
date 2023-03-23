@@ -15,9 +15,9 @@ import { hydrationMetaReducer } from './services/local-storage.service';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 import { FormComponent } from './components/form/form.component';
 import { ListComponent } from './pages/list/list.component';
+import { CalledModalComponent } from './components/called-modal/called-modal.component';
 
 export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
-
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ export const metaReducers: MetaReducer[] = [hydrationMetaReducer];
     NameCardComponent,
     EditModalComponent,
     FormComponent,
-    ListComponent
+    ListComponent,
+    CalledModalComponent
   ],
   imports: [
     BrowserModule,

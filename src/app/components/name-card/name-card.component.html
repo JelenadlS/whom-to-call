@@ -3,6 +3,7 @@
         <img src="assets/delete.svg" alt="delete" height="20px" (click)="delete(data.id)" *ngIf="editPossibility">
         <h3>{{ data.name }}</h3>
         <img src="assets/edit.svg" alt="edit" height="20px" (click)="edit(true)" *ngIf="editPossibility">
+        <img src="assets/check.svg" alt="check" height="20px" (click)="called(true)" *ngIf="showCalledChecBox">
     </div>
     <div>how often: every {{ data.frequency }} days</div>
     <div>last time called: {{ data.timeStamp }}</div>
@@ -12,3 +13,8 @@
     (newEditState)="edit($event)"
     [data]="data"
 ></app-edit-modal>
+<app-called-modal 
+    *ngIf="activeCalled" 
+    (newCalledState)="called($event)"
+    [data]="data"
+></app-called-modal>

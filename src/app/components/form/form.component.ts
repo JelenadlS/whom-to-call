@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { onlyNumbersValidator } from 'src/app/rules/only-numbers.directive';
@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
     frequency: '',
     timeStamp: ''
   };
-  console = console
+  @Output() newCalledState = new EventEmitter<boolean>();
 
   public addPersonForm = new FormGroup({
     name: new FormControl(this.data.name, [
@@ -51,23 +51,33 @@ export class FormComponent implements OnInit {
             this.addPersonForm.patchValue(data)
           }
         })
-        
       })
-  }
+    }
   }
 
-  get name() { return this.addPersonForm.get('name')}
-  get frequency() { return this.addPersonForm.get('frequency')}
+  get name() { return this.addPersonForm.get('name')};
+  get frequency() { return this.addPersonForm.get('frequency')};
 
   public onSubmit(): void {
     if(this.addOrEdit === 'add'){
-      this.addPersonForm.value.timeStamp = new Date().toLocaleDateString()
-      this.addPersonForm.value.id = uuid.v4()
-      this.store.dispatch(addDataAction(this.addPersonForm.value))
+      this.addPersonForm.value.timeStamp = new Date().toLocaleDateString();
+      this.addPersonForm.value.id = uuid.v4();
+      this.store.dispatch(addDataAction(this.addPersonForm.value));
       this.addPersonForm.reset();
     }
+
     if(this.addOrEdit === 'edit'){
-      this.store.dispatch(editDataAction(this.addPersonForm.value))
+      this.store.dispatch(editDataAction(this.addPersonForm.value));
+    }
+
+    if(this.addOrEdit === 'called'){
+      this.addPersonForm.value.name = this.data.name;
+      this.addPersonForm.value.id = this.data.id;
+      this.addPersonForm.value.frequency = this.data.frequency;
+      this.addPersonForm.value.timeStamp = new Date().toLocaleDateString();
+      this.store.dispatch(editDataAction(this.addPersonForm.value));
+      this.newCalledState.emit(false);
+      window.location.reload();
     }
   }
 

@@ -16,7 +16,7 @@
           I want to call {{ data.name }}
       </div>
 
-      <div>
+      <div *ngIf="addOrEdit !== 'called'">
         <label for="frequency">
             every 
         </label>
@@ -42,13 +42,33 @@
         required
         >
       </div>
+
+      <div *ngIf="addOrEdit === 'called'">
+        Hopefully you had a good call!
+      </div>
       
-    <button class="form--button" type="submit" [disabled]="name?.status === 'INVALID' || frequency?.status === 'INVALID'">{{addOrEdit === 'edit' ? 'update' : 'add'}}</button>
-    <div *ngIf="(name?.status === 'INVALID' || frequency?.status === 'INVALID') && (frequency?.touched && name?.touched)"
+    <button 
+    *ngIf="addOrEdit === 'edit' || addOrEdit === 'add'"
+      class="form--button" 
+      type="submit" 
+      [disabled]="name?.status === 'INVALID' || frequency?.status === 'INVALID'">
+      {{addOrEdit === 'edit' ? 'update' : 'add'}}
+    </button>
+
+    <button 
+    *ngIf="addOrEdit === 'called' "
+    class="form--button" 
+    type="submit">
+     Yes, we had a good call 
+  </button>
+    
+    <div 
+    *ngIf="(name?.status === 'INVALID' || frequency?.status === 'INVALID') && (frequency?.touched && name?.touched)"
     class="form--error-message">
       Please enter a name with at least four letters and <br>
       only numbers starting from 1 are allowed.
     </div>
+
     <div *ngIf="(addPersonForm.controls['timeStamp'].status === 'INVALID' || frequency?.status === 'INVALID') && (frequency?.touched && addPersonForm.controls['timeStamp'].touched)"
     class="form--error-message">
       Please note that only numbers starting from 1 are allowed <br>
