@@ -9,9 +9,9 @@ import { deleteDataAction } from 'src/app/store/actions/delete.action';
   styleUrls: ['./name-card.component.less']
 })
 export class NameCardComponent implements OnInit {
-  @Input() data: any;
+  @Input() personToCall: data = {} as data;
   @Input() editPossibility: boolean = true;
-  @Input() showCalledChecBox:boolean = false;
+  @Input() showCalledCheckBox:boolean = false;
   public activeEdit:boolean = false;
   public activeCalled:boolean = false;
 

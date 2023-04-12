@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { data } from 'src/app/services/data.interface';
 
 @Component({
   selector: 'app-called-modal',
@@ -6,9 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./called-modal.component.less']
 })
 export class CalledModalComponent implements OnInit {
-  @Output() newCalledState = new EventEmitter<boolean>();
-  @Input() data: any
-  public addOrEdit = 'called'
+  @Output() updateCalledModalState = new EventEmitter<boolean>();
+  @Input() personToCall: data = {} as data;
+  public formLayoutByStatus = 'called'
 
   constructor() { }
 
@@ -16,6 +17,6 @@ export class CalledModalComponent implements OnInit {
   }
 
   public close(status: boolean){
-    this.newCalledState.emit(status)
+    this.updateCalledModalState.emit(status)
   }
 }

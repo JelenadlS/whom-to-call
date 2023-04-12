@@ -13,12 +13,11 @@ import { dataSelector } from 'src/app/store/selectors/input-data.selector';
   styleUrls: ['./home-page.component.less']
 })
 export class HomePageComponent implements OnInit {
-  public data$: Observable<data[]> = this.store.select(dataSelector);
-  public randomPerson: any;
+  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(dataSelector);
+  public randomPerson: data = {} as data;
   public editPossibility: boolean = false;
-  public showCalledChecBox: boolean = true;
-  public todayOrLater:data[] = [];
-  public addOrEdit = 'called'
+  public showCalledCheckBox: boolean = true;
+  public namesToBeCalledTodayOrLater: data[] = [];
 
   constructor(
     private store: Store
@@ -26,71 +25,73 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.data$.subscribe((data: data[]) =>{
-      
-      data.filter((data:data) => {
-        const tomorrow = new Date(this.getDate(new Date()));
-        const nextCallDate = new Date(this.addDays(new Date(this.convertDate(data.timeStamp)), data.frequency));
+    this.fullListOfPersonsToCall$.subscribe((fullListOfPersonsToCall: data[]) =>{
+      fullListOfPersonsToCall.filter((personToCall:data) => {
+        const tomorrow = new Date(this.convertNewDateToStringDate(new Date()));
+        const nextCallDate = new Date(this.addFrequencyDays(new Date(this.convertStringDateToOtherFormat(personToCall.timeStamp)), personToCall.frequency));
         if(nextCallDate < tomorrow ){
-          this.todayOrLater.push(data);
+          this.namesToBeCalledTodayOrLater.push(personToCall);
         }
       })
 
-      this.getRandomPerson(this.todayOrLater)
+      this.getRandomPerson(this.namesToBeCalledTodayOrLater)
     })
   }
 
-  public getDate(date: Date): string{
+  public convertNewDateToStringDate(date: Date): string{
     const today = date;
-    const yyyy = today.getFullYear();
-    let mm = today.getMonth() + 1;
-    let dd = today.getDate() + 1;
-    let newmm = ''
-    let newdd = ''
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate() + 1;
+    let monthToString = ''
+    let dayToString = ''
     
-    if (dd < 10) {
-      newdd = '0' + dd
+    if (day < 10) {
+      dayToString = '0' + day
     } else {
-      newdd = dd.toString()
+      dayToString = day.toString()
     };
-    if (mm < 10) {
-      newmm = '0' + mm
+    if (month < 10) {
+      monthToString = '0' + month
     } else {
-      newmm = mm.toString()
+      monthToString = month.toString()
     }
     
-    const formattedToday = yyyy + '-' + newmm + '-' + newdd;
+    const formattedToday = year + '-' + monthToString + '-' + dayToString;
 
     return formattedToday
   }
 
-  public convertDate(date: string): string{
+  public convertStringDateToOtherFormat(date: string): string{
     const splitDate = date.split('.');
 
-    const yyyy = splitDate[2];
-    let mm = Number(splitDate[1]);
-    let dd = Number(splitDate[0]);
-    let newmm = ''
-    let newdd = ''
+    const year = splitDate[2];
+    let month = Number(splitDate[1]);
+    let day = Number(splitDate[0]);
+    let monthToString = ''
+    let dayToString = ''
     
-    if (dd < 10) {
-      newdd = '0' + dd
+    if (day < 10) {
+      dayToString = '0' + day
     } else {
-      newdd = dd.toString()
+      dayToString = day.toString()
     };
-    if (mm < 10) {
-      newmm = '0' + mm
+    if (month < 10) {
+      monthToString = '0' + month
     } else {
-      newmm = mm.toString()
+      monthToString = month.toString()
     }
 
-    const formattedToday = yyyy + '-' + newmm + '-' + newdd;
+    const formattedToday = year + '-' + monthToString + '-' + dayToString;
 
     return formattedToday
   }
 
-  public addDays(date: Date, days: string) {
-    date.setDate(date.getDate() + Number(days))
+  public addFrequencyDays(date: Date, frequency: string) {
+    //TODO korrekte Berechnung einfügen, irgendwo ist ein kleiner Bug
+    console.log(date)
+    date.setDate(date.getDate() + Number(frequency))
+    console.log(date)
     return date
   }
 

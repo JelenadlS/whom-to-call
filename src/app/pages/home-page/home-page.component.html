@@ -1,15 +1,15 @@
 <div class="content__general--positioning">
   <button type="button" class="content__button" 
-  (click)="getRandomPerson(todayOrLater)"
-  *ngIf="todayOrLater.length > 1"
+  (click)="getRandomPerson(namesToBeCalledTodayOrLater)"
+  *ngIf="namesToBeCalledTodayOrLater.length > 1"
   >get me someone else</button>
   <ul>
     <app-name-card 
-    *ngIf="todayOrLater.length > 0"
-    [data]="randomPerson"
+    *ngIf="namesToBeCalledTodayOrLater.length > 0"
+    [personToCall]="randomPerson"
     [editPossibility]="editPossibility"
-    [showCalledChecBox]="showCalledChecBox"
+    [showCalledCheckBox]="showCalledCheckBox"
     ></app-name-card>
   </ul>
-  <div *ngIf="todayOrLater.length === 0"> There is noone to call</div>
+  <div *ngIf="namesToBeCalledTodayOrLater.length === 0"> There is noone to call</div>
 </div>

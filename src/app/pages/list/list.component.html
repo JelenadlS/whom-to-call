@@ -1,5 +1,5 @@
-<div *ngFor="let data of (data$ |async)">
+<div *ngFor="let fullListOfPersonsToCall of (fullListOfPersonsToCall$ |async)">
     <ul>
-      <app-name-card [data]="data"></app-name-card>
+      <app-name-card [personToCall]="fullListOfPersonsToCall"></app-name-card>
     </ul>
 </div>

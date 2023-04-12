@@ -10,7 +10,7 @@ import { dataSelector } from 'src/app/store/selectors/input-data.selector';
   styleUrls: ['./list.component.less']
 })
 export class ListComponent implements OnInit {
-  public data$: Observable<data[]> = this.store.select(dataSelector)
+  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(dataSelector)
 
   constructor(
     private store: Store

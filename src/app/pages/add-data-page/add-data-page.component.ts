@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-data-page.component.less']
 })
 export class AddDataPageComponent implements OnInit {
-  public addOrEdit = 'add'
+  public formLayoutByStatus = 'add'
   
   constructor( ) { }
 

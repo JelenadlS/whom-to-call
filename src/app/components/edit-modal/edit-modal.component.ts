@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { data } from 'src/app/services/data.interface';
 
 @Component({
   selector: 'app-edit-modal',
@@ -6,9 +7,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./edit-modal.component.less']
 })
 export class EditModalComponent implements OnInit {
-  @Output() newEditState = new EventEmitter<boolean>();
-  @Input() data: any
-  public addOrEdit = 'edit'
+  @Output() updateEditModalState = new EventEmitter<boolean>();
+  @Input() personToCall: data = {} as data;
+  public formLayoutByStatus = 'edit'
 
   constructor() { }
 
@@ -16,7 +17,7 @@ export class EditModalComponent implements OnInit {
   }
 
   public close(){
-    this.newEditState.emit(false)
+    this.updateEditModalState.emit(false)
   }
 
 }

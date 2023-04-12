@@ -7,35 +7,36 @@ import { editDataAction } from 'src/app/store/actions/edit.action';
 import { addDataAction } from 'src/app/store/actions/input-data.action';
 import { dataSelector } from 'src/app/store/selectors/input-data.selector';
 import * as uuid from 'uuid'
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.less']
 })
 export class FormComponent implements OnInit {
-  @Input() addOrEdit:string = '';
-  @Input() data: data = {
+  @Input() formLayoutByStatus:string = '';
+  @Input() personToCall: data = {
     id: '',
     name: '',
     frequency: '',
     timeStamp: ''
   };
-  @Output() newCalledState = new EventEmitter<boolean>();
+  @Output() updateCalledModalState = new EventEmitter<boolean>();
 
-  public addPersonForm = new FormGroup({
-    name: new FormControl(this.data.name, [
+  public personForm = new FormGroup({
+    name: new FormControl(this.personToCall.name, [
       Validators.required, 
       Validators.minLength(4)
     ]),
-    frequency: new FormControl(this.data.frequency, [
+    frequency: new FormControl(this.personToCall.frequency, [
       Validators.required, 
       onlyNumbersValidator(/(([1-9]{1})|([1-9]{1}[0-9]{1,}))/)
     ]),
-    timeStamp: new FormControl(this.data.timeStamp, [
+    timeStamp: new FormControl(this.personToCall.timeStamp, [
       Validators.required, 
       onlyNumbersValidator(/^\d{2}[.]\d{2}[.]\d{4}$/)
     ]),
-    id: new FormControl(this.data.id),
+    id: new FormControl(this.personToCall.id),
   });
 
   constructor(
@@ -43,40 +44,40 @@ export class FormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.addOrEdit === 'edit') {
+    if (this.formLayoutByStatus === 'edit') {
       this.store.select(dataSelector)
       .subscribe((data: data[]) => {
         data.find((data: data) => {
-          if(data.id === this.data.id){
-            this.addPersonForm.patchValue(data)
+          if(data.id === this.personToCall.id){
+            this.personForm.patchValue(data)
           }
         })
       })
     }
   }
 
-  get name() { return this.addPersonForm.get('name')};
-  get frequency() { return this.addPersonForm.get('frequency')};
+  get name() { return this.personForm.get('name')};
+  get frequency() { return this.personForm.get('frequency')};
 
   public onSubmit(): void {
-    if(this.addOrEdit === 'add'){
-      this.addPersonForm.value.timeStamp = new Date().toLocaleDateString();
-      this.addPersonForm.value.id = uuid.v4();
-      this.store.dispatch(addDataAction(this.addPersonForm.value));
-      this.addPersonForm.reset();
+    if(this.formLayoutByStatus === 'add'){
+      this.personForm.value.timeStamp = new Date().toLocaleDateString();
+      this.personForm.value.id = uuid.v4();
+      this.store.dispatch(addDataAction(this.personForm.value));
+      this.personForm.reset();
     }
 
-    if(this.addOrEdit === 'edit'){
-      this.store.dispatch(editDataAction(this.addPersonForm.value));
+    if(this.formLayoutByStatus === 'edit'){
+      this.store.dispatch(editDataAction(this.personForm.value));
     }
 
-    if(this.addOrEdit === 'called'){
-      this.addPersonForm.value.name = this.data.name;
-      this.addPersonForm.value.id = this.data.id;
-      this.addPersonForm.value.frequency = this.data.frequency;
-      this.addPersonForm.value.timeStamp = new Date().toLocaleDateString();
-      this.store.dispatch(editDataAction(this.addPersonForm.value));
-      this.newCalledState.emit(false);
+    if(this.formLayoutByStatus === 'called'){
+      this.personForm.value.name = this.personToCall.name;
+      this.personForm.value.id = this.personToCall.id;
+      this.personForm.value.frequency = this.personToCall.frequency;
+      this.personForm.value.timeStamp = new Date().toLocaleDateString();
+      this.store.dispatch(editDataAction(this.personForm.value));
+      this.updateCalledModalState.emit(false);
       window.location.reload();
     }
   }
