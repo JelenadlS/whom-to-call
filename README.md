@@ -1,4 +1,8 @@
 # WhomToCall
+This is a project for a friend who asked me to create it for her. Whenever she has some time left, she wants to know whom to call. 
+Therefore, she can add persons to a list with a frequency how often she wants to call this person. On the home screen she can then see a person who needs to be called again, calculated by the last time called and frequency to call. After this is done, the person can be checked and will appear in the list next time the frequency is due.
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
 

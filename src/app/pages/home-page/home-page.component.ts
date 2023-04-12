@@ -5,7 +5,11 @@ import { data } from 'src/app/services/data.interface';
 import { localStorageSelector } from 'src/app/store/selectors/local-storage.selector';
 
  // TODO Random nur einmal vorkommen lassen
- // TODO Liste nach next Call ordnen
+ // TODO Liste nach next Call ordnen anstelle von Random // toggle einbauen was man will?
+ // TODO Layout auf screen anpassen alles nach oben setzen und nach unten scrollen lassen
+ // TODO volle liste nach Alphabet sortieren
+ // TODO check ob modal nur in einer componente sein kann
+ // TODO gehen noch mehr shared componenten?
 
 @Component({
   selector: 'app-home-page',
