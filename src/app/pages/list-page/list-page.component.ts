@@ -5,11 +5,11 @@ import { data } from 'src/app/services/data.interface';
 import { localStorageSelector } from 'src/app/store/selectors/local-storage.selector';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.less']
+  selector: 'app-list-page',
+  templateUrl: './list-page.component.html',
+  styleUrls: ['./list-page.component.less']
 })
-export class ListComponent implements OnInit {
+export class ListPageComponent implements OnInit {
   public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(localStorageSelector)
 
   constructor(

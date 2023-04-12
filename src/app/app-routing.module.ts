@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; 
-import { AddDataPageComponent } from './pages/add-data-page/add-data-page.component';
+import { AddPersonPageComponent } from './pages/add-person-page/add-person-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { ListComponent } from './pages/list/list.component';
+import { ListPageComponent } from './pages/list-page/list-page.component';
 
 const routes: Routes = [
     {
@@ -11,11 +11,11 @@ const routes: Routes = [
     },
     {
         path: 'add',
-        component: AddDataPageComponent
+        component: AddPersonPageComponent
     },
     {
         path: 'list',
-        component: ListComponent
+        component: ListPageComponent
     },
 ];
 

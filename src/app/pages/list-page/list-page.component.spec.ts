@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddDataPageComponent } from './add-data-page.component';
+import { ListPageComponent } from './list-page.component';
 
-describe('AddDataPageComponent', () => {
-  let component: AddDataPageComponent;
-  let fixture: ComponentFixture<AddDataPageComponent>;
+describe('ListComponent', () => {
+  let component: ListPageComponent;
+  let fixture: ComponentFixture<ListPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddDataPageComponent ]
+      declarations: [ ListPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddDataPageComponent);
+    fixture = TestBed.createComponent(ListPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
