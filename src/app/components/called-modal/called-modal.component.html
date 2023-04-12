@@ -1,10 +1,10 @@
 <div class="modal--background">
     <section class="modal">
-        <img src="assets/close.svg" alt="close" height="20px" (click)="close(false)">
+        <img src="assets/close.svg" alt="close" height="20px" (click)="onClose(false)">
         <app-form 
         [formLayoutByStatus]="formLayoutByStatus"
         [personToCall]="personToCall"
-        (updateCalledModalState)="close($event)"
+        (updateCalledModalState)="onClose($event)"
         ></app-form>
     </section>
 </div>

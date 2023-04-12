@@ -1,20 +1,20 @@
 <section class="card--general">
     <div class="card--header">
-        <img src="assets/delete.svg" alt="delete" height="20px" (click)="delete(personToCall.id)" *ngIf="editPossibility">
+        <img src="assets/delete.svg" alt="delete" height="20px" (click)="onDelete(personToCall.id)" *ngIf="editPossibility">
         <h3>{{ personToCall.name }}</h3>
-        <img src="assets/edit.svg" alt="edit" height="20px" (click)="edit(true)" *ngIf="editPossibility">
-        <img src="assets/check.svg" alt="check" height="20px" (click)="called(true)" *ngIf="showCalledCheckBox">
+        <img src="assets/edit.svg" alt="edit" height="20px" (click)="onEdit(true)" *ngIf="editPossibility">
+        <img src="assets/check.svg" alt="check" height="20px" (click)="onCalled(true)" *ngIf="showCalledCheckBox">
     </div>
     <div>how often: every {{ personToCall.frequency }} days</div>
     <div>last time called: {{ personToCall.timeStamp }}</div>
 </section>
 <app-edit-modal 
     *ngIf="activeEdit" 
-    (updateEditModalState)="edit($event)"
+    (updateEditModalState)="onEdit($event)"
     [personToCall]="personToCall"
 ></app-edit-modal>
 <app-called-modal 
     *ngIf="activeCalled" 
-    (updateCalledModalState)="called($event)"
+    (updateCalledModalState)="onCalled($event)"
     [personToCall]="personToCall"
 ></app-called-modal>

@@ -22,15 +22,15 @@ export class NameCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public delete(id:string) {
+  public onDelete(id:string) {
     this.store.dispatch(deletePersonAction({id}))
   }
 
-  public edit(state: boolean) {
+  public onEdit(state: boolean) {
     this.activeEdit = state
   }
 
-  public called(state: boolean) {
+  public onCalled(state: boolean) {
     this.activeCalled = state
   }
 }

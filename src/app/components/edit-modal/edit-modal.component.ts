@@ -16,7 +16,7 @@ export class EditModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public close(){
+  public onClose(){
     this.updateEditModalState.emit(false)
   }
 

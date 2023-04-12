@@ -16,7 +16,7 @@ export class CalledModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public close(status: boolean){
+  public onClose(status: boolean){
     this.updateCalledModalState.emit(status)
   }
 }
