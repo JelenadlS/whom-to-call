@@ -1,15 +1,15 @@
 import { createReducer, on } from "@ngrx/store";
 import { data } from "src/app/services/data.interface";
-import { deleteDataAction } from "../actions/delete.action";
-import { editDataAction } from "../actions/edit.action";
-import { addDataAction } from "../actions/input-data.action";
+import { deletePersonAction } from "../actions/delete-person.action";
+import { editPersonAction } from "../actions/edit-person.action";
+import { addPersonAction } from "../actions/add-person.action";
 
 
 export const initialState: data[] = [];
 
-export const addDataReducer = createReducer(
+export const createAndUpdatePersonReducer = createReducer(
     initialState,
-    on(addDataAction, (state, action) => {
+    on(addPersonAction, (state, action) => {
         const uniqueName: data = {
             id: action.id,
             name: action.name,
@@ -21,7 +21,7 @@ export const addDataReducer = createReducer(
         return entriesClone
     }
     ),
-    on(deleteDataAction, (state, action) => {
+    on(deletePersonAction, (state, action) => {
         const id: string = action.id
         const entriesClone: data[] = JSON.parse(JSON.stringify(state));
         const found: data | undefined = entriesClone.find((data: data) => data.id === id);
@@ -38,7 +38,7 @@ export const addDataReducer = createReducer(
         return entriesClone
     }
     ),
-    on(editDataAction, (state, action) => {
+    on(editPersonAction, (state, action) => {
         const entriesClone: data[] = JSON.parse(JSON.stringify(state));
 
            entriesClone.map((data: data) => {

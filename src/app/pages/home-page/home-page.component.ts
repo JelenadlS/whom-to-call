@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { data } from 'src/app/services/data.interface';
-import { dataSelector } from 'src/app/store/selectors/input-data.selector';
+import { localStorageSelector } from 'src/app/store/selectors/local-storage.selector';
 
  // TODO Random nur einmal vorkommen lassen
  // TODO Liste nach next Call ordnen
@@ -13,7 +13,7 @@ import { dataSelector } from 'src/app/store/selectors/input-data.selector';
   styleUrls: ['./home-page.component.less']
 })
 export class HomePageComponent implements OnInit {
-  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(dataSelector);
+  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(localStorageSelector);
   public randomPerson: data = {} as data;
   public editPossibility: boolean = false;
   public showCalledCheckBox: boolean = true;

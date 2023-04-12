@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { data } from 'src/app/services/data.interface';
-import { deleteDataAction } from 'src/app/store/actions/delete.action';
+import { deletePersonAction } from 'src/app/store/actions/delete-person.action';
 
 @Component({
   selector: 'app-name-card',
@@ -23,7 +23,7 @@ export class NameCardComponent implements OnInit {
   }
 
   public delete(id:string) {
-    this.store.dispatch(deleteDataAction({id}))
+    this.store.dispatch(deletePersonAction({id}))
   }
 
   public edit(state: boolean) {

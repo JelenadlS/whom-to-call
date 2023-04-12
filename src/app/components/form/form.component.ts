@@ -3,9 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { onlyNumbersValidator } from 'src/app/rules/only-numbers.directive';
 import { data } from 'src/app/services/data.interface';
-import { editDataAction } from 'src/app/store/actions/edit.action';
-import { addDataAction } from 'src/app/store/actions/input-data.action';
-import { dataSelector } from 'src/app/store/selectors/input-data.selector';
+import { editPersonAction } from 'src/app/store/actions/edit-person.action';
+import { addPersonAction } from 'src/app/store/actions/add-person.action';
+import { localStorageSelector } from 'src/app/store/selectors/local-storage.selector';
 import * as uuid from 'uuid'
 
 @Component({
@@ -45,7 +45,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.formLayoutByStatus === 'edit') {
-      this.store.select(dataSelector)
+      this.store.select(localStorageSelector)
       .subscribe((data: data[]) => {
         data.find((data: data) => {
           if(data.id === this.personToCall.id){
@@ -63,12 +63,12 @@ export class FormComponent implements OnInit {
     if(this.formLayoutByStatus === 'add'){
       this.personForm.value.timeStamp = new Date().toLocaleDateString();
       this.personForm.value.id = uuid.v4();
-      this.store.dispatch(addDataAction(this.personForm.value));
+      this.store.dispatch(addPersonAction(this.personForm.value));
       this.personForm.reset();
     }
 
     if(this.formLayoutByStatus === 'edit'){
-      this.store.dispatch(editDataAction(this.personForm.value));
+      this.store.dispatch(editPersonAction(this.personForm.value));
     }
 
     if(this.formLayoutByStatus === 'called'){
@@ -76,7 +76,7 @@ export class FormComponent implements OnInit {
       this.personForm.value.id = this.personToCall.id;
       this.personForm.value.frequency = this.personToCall.frequency;
       this.personForm.value.timeStamp = new Date().toLocaleDateString();
-      this.store.dispatch(editDataAction(this.personForm.value));
+      this.store.dispatch(editPersonAction(this.personForm.value));
       this.updateCalledModalState.emit(false);
       window.location.reload();
     }
