@@ -37,8 +37,6 @@ export class HomePageComponent implements OnInit {
           this.namesToBeCalledTodayOrLater.push(personToCall);
         }
       })
-
-      this.getRandomPerson(this.namesToBeCalledTodayOrLater)
     })
   }
 
@@ -93,15 +91,7 @@ export class HomePageComponent implements OnInit {
 
   public addFrequencyDays(date: Date, frequency: string) {
     //TODO korrekte Berechnung einfügen, irgendwo ist ein kleiner Bug
-    console.log(date)
     date.setDate(date.getDate() + Number(frequency))
-    console.log(date)
     return date
-  }
-
-  public getRandomPerson(todayOrLater:data[]) {
-    const randomIndex = Math.floor(Math.random() * todayOrLater.length);
-    
-    this.randomPerson= todayOrLater[randomIndex];
   }
 }

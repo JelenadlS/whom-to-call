@@ -16,6 +16,7 @@ import { EditModalComponent } from './components/edit-modal/edit-modal.component
 import { FormComponent } from './components/form/form.component';
 import { ListPageComponent } from './pages/list-page/list-page.component';
 import { CalledModalComponent } from './components/called-modal/called-modal.component';
+import { RandomPersonComponent } from './components/random-person/random-person.component';
 
 export const metaReducers: MetaReducer[] = [updateLocalStorage];
 
@@ -28,7 +29,8 @@ export const metaReducers: MetaReducer[] = [updateLocalStorage];
     EditModalComponent,
     FormComponent,
     ListPageComponent,
-    CalledModalComponent
+    CalledModalComponent,
+    RandomPersonComponent
   ],
   imports: [
     BrowserModule,
