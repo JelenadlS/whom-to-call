@@ -22,6 +22,7 @@ export class HomePageComponent implements OnInit {
   public editPossibility: boolean = false;
   public showCalledCheckBox: boolean = true;
   public namesToBeCalledTodayOrLater: data[] = [];
+  public showRandomPersonToCall: boolean = false;
 
   constructor(
     private store: Store
@@ -93,5 +94,9 @@ export class HomePageComponent implements OnInit {
     //TODO korrekte Berechnung einfügen, irgendwo ist ein kleiner Bug
     date.setDate(date.getDate() + Number(frequency))
     return date
+  }
+
+  public onShowRandomPersonToCall() {
+    this.showRandomPersonToCall = !this.showRandomPersonToCall
   }
 }

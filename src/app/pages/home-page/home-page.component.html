@@ -1,1 +1,29 @@
-<app-random-person [namesToBeCalledTodayOrLater]="namesToBeCalledTodayOrLater"></app-random-person>
+<div class="content__general--positioning">
+  <div>
+    Zeige mir eine 
+    <span [style.font-weight]="showRandomPersonToCall ? 'normal' : 'bold'">Liste</span> 
+    oder 
+    <span  [style.font-weight]="showRandomPersonToCall ? 'bold' : 'normal'">zufällige Person</span>.
+  </div>
+  <label class="toggle"> 
+    <input id="toggleswitch" type="checkbox" (click)="onShowRandomPersonToCall()">
+    <span class="roundbutton"></span>
+  </label>
+  
+  <div *ngIf="showRandomPersonToCall">
+    <app-random-person [namesToBeCalledTodayOrLater]="namesToBeCalledTodayOrLater"></app-random-person>
+  </div>
+  
+  <div *ngIf="!showRandomPersonToCall">
+    <div *ngFor="let personToBeCalled of (namesToBeCalledTodayOrLater)">
+      <ul>
+        <app-name-card 
+        [personToCall]="personToBeCalled"
+        *ngIf="namesToBeCalledTodayOrLater.length > 0"
+        [editPossibility]="editPossibility"
+        [showCalledCheckBox]="showCalledCheckBox"></app-name-card>
+      </ul>
+    </div>
+  </div>
+</div>
+
