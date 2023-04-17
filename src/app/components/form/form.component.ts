@@ -19,7 +19,8 @@ export class FormComponent implements OnInit {
     id: '',
     name: '',
     frequency: '',
-    timeStamp: ''
+    timeStamp: '',
+    dueDate: '',
   };
   @Output() updateCalledModalState = new EventEmitter<boolean>();
 

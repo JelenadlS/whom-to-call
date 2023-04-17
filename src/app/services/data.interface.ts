@@ -2,5 +2,6 @@ export interface data {
     id: string;
     name: string;
     frequency: string;
-    timeStamp: string
+    timeStamp: string;
+    dueDate: string;
 }
