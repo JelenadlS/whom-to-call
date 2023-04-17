@@ -7,6 +7,7 @@ import { editPersonAction } from 'src/app/store/actions/edit-person.action';
 import { addPersonAction } from 'src/app/store/actions/add-person.action';
 import { localStorageSelector } from 'src/app/store/selectors/local-storage.selector';
 import * as uuid from 'uuid'
+import { convertNewDateToStringDateRule } from 'src/app/rules/convert-new-date-to-string-date.rule';
 
 @Component({
   selector: 'app-form',
@@ -62,7 +63,7 @@ export class FormComponent implements OnInit {
 
   public onSubmit(): void {
     if(this.formLayoutByStatus === 'add'){
-      this.personForm.value.timeStamp = new Date().toLocaleDateString();
+      this.personForm.value.timeStamp = convertNewDateToStringDateRule(new Date());
       this.personForm.value.id = uuid.v4();
       this.store.dispatch(addPersonAction(this.personForm.value));
       this.personForm.reset();
@@ -76,7 +77,7 @@ export class FormComponent implements OnInit {
       this.personForm.value.name = this.personToCall.name;
       this.personForm.value.id = this.personToCall.id;
       this.personForm.value.frequency = this.personToCall.frequency;
-      this.personForm.value.timeStamp = new Date().toLocaleDateString();
+      this.personForm.value.timeStamp = convertNewDateToStringDateRule(new Date());
       this.store.dispatch(editPersonAction(this.personForm.value));
       this.updateCalledModalState.emit(false);
       window.location.reload();
