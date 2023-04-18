@@ -1,4 +1,4 @@
-<div *ngFor="let fullListOfPersonsToCall of (fullListOfPersonsToCall$ |async)">
+<div *ngFor="let fullListOfPersonsToCall of sortedFullListOfPersonsToCall">
     <ul>
       <app-name-card [personToCall]="fullListOfPersonsToCall"></app-name-card>
     </ul>

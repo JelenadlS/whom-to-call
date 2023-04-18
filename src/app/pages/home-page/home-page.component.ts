@@ -7,14 +7,8 @@ import { fullListOfPeopleSelector } from 'src/app/store/selectors/full-list-of-p
 
  // TODO Random nur einmal vorkommen lassen
  // TODO Layout auf screen anpassen alles nach oben setzen und nach unten scrollen lassen
- // TODO volle liste nach Alphabet sortieren
  // TODO check ob modal nur in einer componente sein kann
- // TODO gehen noch mehr shared componenten?
-
-
- // TODO Liste nach next Call ordnen anstelle von Random
- // text due since + nach Zeit sortieren
- 
+ // TODO gehen noch mehr shared componenten? 
 
 @Component({
   selector: 'app-home-page',
@@ -43,6 +37,9 @@ export class HomePageComponent implements OnInit {
         if(nextCallDate < today ){
         this.namesToBeCalledTodayOrLater.push(personToCall);
         }
+
+        const copyOfArrayToSort = [...this.namesToBeCalledTodayOrLater]
+        this.namesToBeCalledTodayOrLater = copyOfArrayToSort.sort((a, b) => (b.daysSinceLastCall - a.daysSinceLastCall))
       })
     })
   }
