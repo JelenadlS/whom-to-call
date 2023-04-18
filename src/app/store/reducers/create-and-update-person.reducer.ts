@@ -4,6 +4,7 @@ import { deletePersonAction } from "../actions/delete-person.action";
 import { editPersonAction } from "../actions/edit-person.action";
 import { addPersonAction } from "../actions/add-person.action";
 import { calculateDueDateRule } from "src/app/rules/calculate-due-date.rule";
+import { calculateDaysSinceLastCallRule } from "src/app/rules/calculate-days-since-last-call.rule";
 
 
 export const initialState: Person[] = [];
@@ -11,12 +12,14 @@ export const initialState: Person[] = [];
 export const createAndUpdatePersonReducer = createReducer(
     initialState,
     on(addPersonAction, (state, action) => {
+
         const uniqueName: Person = {
             id: action.id,
             name: action.name,
             frequency: action.frequency,
             lastTimeCalled: action.lastTimeCalled,
             nextTimeToCall: calculateDueDateRule(action),
+            daysSinceLastCall: calculateDaysSinceLastCallRule(calculateDueDateRule(action)),
         }
         const entriesClone: Person[] = JSON.parse(JSON.stringify(state));
         entriesClone.push(uniqueName);
@@ -48,6 +51,7 @@ export const createAndUpdatePersonReducer = createReducer(
                 data.frequency = action.frequency;
                 data.lastTimeCalled = action.lastTimeCalled;
                 data.nextTimeToCall = calculateDueDateRule(action);
+                data.daysSinceLastCall = calculateDaysSinceLastCallRule(calculateDueDateRule(action));
                }
            });
             

@@ -10,5 +10,6 @@ export const addPersonAction = createAction(
         frequency: string, 
         lastTimeCalled: string,
         nextTimeToCall: string,
+        daysSinceLastCall: number,
     }>()
 )

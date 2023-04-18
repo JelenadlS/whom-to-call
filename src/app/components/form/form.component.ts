@@ -22,6 +22,7 @@ export class FormComponent implements OnInit {
     frequency: '',
     lastTimeCalled: '',
     nextTimeToCall: '',
+    daysSinceLastCall: 0,
   };
   @Output() updateCalledModalState = new EventEmitter<boolean>();
 

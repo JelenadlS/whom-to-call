@@ -11,7 +11,6 @@ export class RandomPersonComponent implements OnInit {
   public editPossibility: boolean = false;
   public showCalledCheckBox: boolean = true;
   @Input() namesToBeCalledTodayOrLater: Person[] = [];
-  @Input() nextTimeToCall: number = 0;
 
   constructor() { }
 
@@ -21,7 +20,6 @@ export class RandomPersonComponent implements OnInit {
 
   public getRandomPerson(todayOrLater: Person[]) {
     const randomIndex = Math.floor(Math.random() * todayOrLater.length);
-    
     this.randomPerson= todayOrLater[randomIndex];
   }
 }

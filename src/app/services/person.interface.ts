@@ -4,4 +4,5 @@ export interface Person {
     frequency: string;
     lastTimeCalled: string;
     nextTimeToCall: string;
+    daysSinceLastCall: number;
 }

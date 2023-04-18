@@ -13,7 +13,6 @@
   <div *ngIf="showRandomPersonToCall">
     <app-random-person 
     [namesToBeCalledTodayOrLater]="namesToBeCalledTodayOrLater"
-    [nextTimeToCall]="nextTimeToCall"
     ></app-random-person>
   </div>
   
@@ -22,10 +21,9 @@
       <ul>
         <app-name-card 
         [personToCall]="personToBeCalled"
-        *ngIf="namesToBeCalledTodayOrLater.length > 0"
         [editPossibility]="editPossibility"
         [showCalledCheckBox]="showCalledCheckBox"
-        [nextTimeToCall]="nextTimeToCall"></app-name-card>
+        ></app-name-card>
       </ul>
     </div>
   </div>

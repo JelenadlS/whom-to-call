@@ -1,16 +1,31 @@
 <section class="card--general">
     <div class="card--header">
-        <img src="assets/delete.svg" alt="delete" height="20px" (click)="onDelete(personToCall.id)" *ngIf="editPossibility">
+        <img src="assets/delete.svg" 
+        alt="delete" 
+        height="20px" 
+        (click)="onDelete(personToCall.id)" 
+        *ngIf="editPossibility">
         <h3>{{ personToCall.name }}</h3>
-        <img src="assets/edit.svg" alt="edit" height="20px" (click)="onEdit(true)" *ngIf="editPossibility">
-        <img src="assets/check.svg" alt="check" height="20px" (click)="onCalled(true)" *ngIf="showCalledCheckBox">
+        <img src="assets/edit.svg" 
+        alt="edit" 
+        height="20px" 
+        (click)="onEdit(true)" 
+        *ngIf="editPossibility">
+        <img src="assets/check.svg" 
+        alt="check" 
+        height="20px" 
+        (click)="onCalled(true)" 
+        *ngIf="showCalledCheckBox">
     </div>
-    <div *ngIf="!nextTimeToCall">
+    <div *ngIf="!showCalledCheckBox">
         <div>how often: every {{ personToCall.frequency }} days</div>
         <div>last time called: {{ personToCall.lastTimeCalled }}</div>
     </div>
-    <div *ngIf="nextTimeToCall">
-        <div>you need to call since {{ nextTimeToCall }} days</div>
+    <div *ngIf="showCalledCheckBox">
+        <div *ngIf="nextTimeToCall > 1">you need to call since {{ nextTimeToCall }} days</div>
+        <div *ngIf="nextTimeToCall === 1">you need to call since {{ nextTimeToCall }} day</div>
+
+        <div *ngIf="nextTimeToCall === 0">you need to call today</div>
     </div>
 </section>
 <app-edit-modal 
