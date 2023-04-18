@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { data } from 'src/app/services/data.interface';
-import { localStorageSelector } from 'src/app/store/selectors/local-storage.selector';
+import { fullListOfPeopleSelector } from 'src/app/store/selectors/full-list-of-people.selector';
 
 @Component({
   selector: 'app-list-page',
@@ -10,7 +10,7 @@ import { localStorageSelector } from 'src/app/store/selectors/local-storage.sele
   styleUrls: ['./list-page.component.less']
 })
 export class ListPageComponent implements OnInit {
-  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(localStorageSelector)
+  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(fullListOfPeopleSelector)
 
   constructor(
     private store: Store

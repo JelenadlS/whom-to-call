@@ -38,7 +38,7 @@ export const metaReducers: MetaReducer[] = [updateLocalStorage];
     ReactiveFormsModule,
      StoreModule.forRoot(
       {
-        storeData: createAndUpdatePersonReducer,
+        fullListOfPeople: createAndUpdatePersonReducer,
       },
       { metaReducers },
     ),

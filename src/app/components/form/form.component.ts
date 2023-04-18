@@ -5,7 +5,7 @@ import { onlyNumbersValidator } from 'src/app/rules/only-numbers.directive';
 import { data } from 'src/app/services/data.interface';
 import { editPersonAction } from 'src/app/store/actions/edit-person.action';
 import { addPersonAction } from 'src/app/store/actions/add-person.action';
-import { localStorageSelector } from 'src/app/store/selectors/local-storage.selector';
+import { fullListOfPeopleSelector } from 'src/app/store/selectors/full-list-of-people.selector';
 import * as uuid from 'uuid'
 import { convertNewDateToStringDateRule } from 'src/app/rules/convert-new-date-to-string-date.rule';
 
@@ -47,7 +47,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.formLayoutByStatus === 'edit') {
-      this.store.select(localStorageSelector)
+      this.store.select(fullListOfPeopleSelector)
       .subscribe((data: data[]) => {
         data.find((data: data) => {
           if(data.id === this.personToCall.id){
