@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { data } from 'src/app/services/data.interface';
+import { Person } from 'src/app/services/person.interface';
 import { fullListOfPeopleSelector } from 'src/app/store/selectors/full-list-of-people.selector';
 
 @Component({
@@ -10,7 +10,7 @@ import { fullListOfPeopleSelector } from 'src/app/store/selectors/full-list-of-p
   styleUrls: ['./list-page.component.less']
 })
 export class ListPageComponent implements OnInit {
-  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(fullListOfPeopleSelector)
+  public fullListOfPersonsToCall$: Observable<Person[]> = this.store.select(fullListOfPeopleSelector)
 
   constructor(
     private store: Store

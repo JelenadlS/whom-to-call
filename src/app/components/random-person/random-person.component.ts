@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { data } from 'src/app/services/data.interface';
+import { Person } from 'src/app/services/person.interface';
 
 @Component({
   selector: 'app-random-person',
@@ -7,10 +7,11 @@ import { data } from 'src/app/services/data.interface';
   styleUrls: ['./random-person.component.less']
 })
 export class RandomPersonComponent implements OnInit {
-  public randomPerson: data = {} as data;
+  public randomPerson: Person = {} as Person;
   public editPossibility: boolean = false;
   public showCalledCheckBox: boolean = true;
-  @Input() namesToBeCalledTodayOrLater: data[] = [];
+  @Input() namesToBeCalledTodayOrLater: Person[] = [];
+  @Input() nextTimeToCall: number = 0;
 
   constructor() { }
 
@@ -18,7 +19,7 @@ export class RandomPersonComponent implements OnInit {
     this.getRandomPerson(this.namesToBeCalledTodayOrLater)
   }
 
-  public getRandomPerson(todayOrLater:data[]) {
+  public getRandomPerson(todayOrLater: Person[]) {
     const randomIndex = Math.floor(Math.random() * todayOrLater.length);
     
     this.randomPerson= todayOrLater[randomIndex];

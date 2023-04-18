@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { convertStringDateToIsoFormatRule } from 'src/app/rules/convert-string-date-to-iso-format.rule';
-import { data } from 'src/app/services/data.interface';
+import { Person } from 'src/app/services/person.interface';
 import { fullListOfPeopleSelector } from 'src/app/store/selectors/full-list-of-people.selector';
 
  // TODO Random nur einmal vorkommen lassen
@@ -22,13 +22,13 @@ import { fullListOfPeopleSelector } from 'src/app/store/selectors/full-list-of-p
   styleUrls: ['./home-page.component.less']
 })
 export class HomePageComponent implements OnInit {
-  public fullListOfPersonsToCall$: Observable<data[]> = this.store.select(fullListOfPeopleSelector);
-  public randomPerson: data = {} as data;
+  public fullListOfPersonsToCall$: Observable<Person[]> = this.store.select(fullListOfPeopleSelector);
+  public randomPerson: Person = {} as Person;
   public editPossibility: boolean = false;
   public showCalledCheckBox: boolean = true;
-  public namesToBeCalledTodayOrLater: data[] = [];
+  public namesToBeCalledTodayOrLater: Person[] = [];
   public showRandomPersonToCall: boolean = false;
-  public dueDate: number = 0;
+  public nextTimeToCall: number = 0;
 
   constructor(
     private store: Store
@@ -36,19 +36,22 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.fullListOfPersonsToCall$.subscribe((fullListOfPersonsToCall: data[]) => {
-      fullListOfPersonsToCall.filter((personToCall:data) => {
+    this.fullListOfPersonsToCall$.subscribe((fullListOfPersonsToCall: Person[]) => {
+      fullListOfPersonsToCall.filter((personToCall:Person) => {
         const today = new Date()
         today.setDate(today.getDate() + 1)
         const tomorrow = today
 
         const nextCallDate = new Date(
-          convertStringDateToIsoFormatRule(personToCall.dueDate)
-          )
-
-         if(nextCallDate < tomorrow ){
-         this.namesToBeCalledTodayOrLater.push(personToCall);
-          }
+          convertStringDateToIsoFormatRule(personToCall.nextTimeToCall)
+        )
+        
+ 
+        if(nextCallDate < tomorrow ){
+        this.namesToBeCalledTodayOrLater.push(personToCall);
+        const timeInMiliSec = today.getTime() - nextCallDate.getTime()
+        this.nextTimeToCall = Math.ceil(timeInMiliSec/ (1000 * 3600 * 24));
+        }
       })
     })
   }

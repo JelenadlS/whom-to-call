@@ -5,8 +5,13 @@
         <img src="assets/edit.svg" alt="edit" height="20px" (click)="onEdit(true)" *ngIf="editPossibility">
         <img src="assets/check.svg" alt="check" height="20px" (click)="onCalled(true)" *ngIf="showCalledCheckBox">
     </div>
-    <div>how often: every {{ personToCall.frequency }} days</div>
-    <div>last time called: {{ personToCall.timeStamp }}</div>
+    <div *ngIf="!nextTimeToCall">
+        <div>how often: every {{ personToCall.frequency }} days</div>
+        <div>last time called: {{ personToCall.lastTimeCalled }}</div>
+    </div>
+    <div *ngIf="nextTimeToCall">
+        <div>you need to call since {{ nextTimeToCall }} days</div>
+    </div>
 </section>
 <app-edit-modal 
     *ngIf="activeEdit" 

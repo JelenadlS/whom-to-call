@@ -31,14 +31,14 @@
       </div>
 
       <div *ngIf="formLayoutByStatus === 'edit'">
-        <label for="timeStamp">
+        <label for="lastTimeCalled">
           Last time was the
         </label>
         <input 
-        id="timeStamp" 
+        id="lastTimeCalled" 
         type="text" 
-        formControlName="timeStamp"
-        [placeholder]="personToCall.timeStamp"
+        formControlName="lastTimeCalled"
+        [placeholder]="personToCall.lastTimeCalled"
         required
         >
       </div>
@@ -69,7 +69,7 @@
       only numbers starting from 1 are allowed.
     </div>
 
-    <div *ngIf="(personForm.controls['timeStamp'].status === 'INVALID' || frequency?.status === 'INVALID') && (frequency?.touched && personForm.controls['timeStamp'].touched)"
+    <div *ngIf="(personForm.controls['lastTimeCalled'].status === 'INVALID' || frequency?.status === 'INVALID') && (frequency?.touched && personForm.controls['lastTimeCalled'].touched)"
     class="form--error-message">
       Please note that only numbers starting from 1 are allowed <br>
       and the date needs to have the format dd.mm.yyyy.

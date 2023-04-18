@@ -8,7 +8,7 @@ export const addPersonAction = createAction(
         id: string,
         name: string, 
         frequency: string, 
-        timeStamp: string,
-        dueDate: string,
+        lastTimeCalled: string,
+        nextTimeToCall: string,
     }>()
 )

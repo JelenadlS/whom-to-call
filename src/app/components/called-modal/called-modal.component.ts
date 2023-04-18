@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { data } from 'src/app/services/data.interface';
+import { Person } from 'src/app/services/person.interface';
 
 @Component({
   selector: 'app-called-modal',
@@ -8,7 +8,7 @@ import { data } from 'src/app/services/data.interface';
 })
 export class CalledModalComponent implements OnInit {
   @Output() updateCalledModalState = new EventEmitter<boolean>();
-  @Input() personToCall: data = {} as data;
+  @Input() personToCall: Person = {} as Person;
   public formLayoutByStatus = 'called'
 
   constructor() { }

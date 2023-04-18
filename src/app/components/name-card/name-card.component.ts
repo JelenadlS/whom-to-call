@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { data } from 'src/app/services/data.interface';
+import { Person } from 'src/app/services/person.interface';
 import { deletePersonAction } from 'src/app/store/actions/delete-person.action';
 
 @Component({
@@ -9,9 +9,10 @@ import { deletePersonAction } from 'src/app/store/actions/delete-person.action';
   styleUrls: ['./name-card.component.less']
 })
 export class NameCardComponent implements OnInit {
-  @Input() personToCall: data = {} as data;
+  @Input() personToCall: Person = {} as Person;
   @Input() editPossibility: boolean = true;
   @Input() showCalledCheckBox:boolean = false;
+  @Input() nextTimeToCall: number = 0;
   public activeEdit:boolean = false;
   public activeCalled:boolean = false;
 
